@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sabores da Lusofonia</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #b22222;
+      --secondary-color: #8b0000;
+      --accent-color: #ffd700;
+      --light-color: #fff8f0;
+      --dark-color: #333;
+      --text-color: #444;
+      --shadow: 0 4px 12px rgba(0,0,0,0.15);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--light-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    
+    /* Header e Navegação */
+    header {
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+    }
+    
+    .header-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    header h1 {
+      font-size: 3.5rem;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    header p {
+      font-size: 1.5rem;
+      margin-bottom: 25px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .btn {
+      display: inline-block;
+      background: var(--primary-color);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: var(--transition);
+      margin-top: 15px;
+    }
+    
+    .btn:hover {
+      background: var(--secondary-color);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+    
+    nav {
+      background: var(--secondary-color);
+      padding: 15px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 20px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    nav a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: var(--accent-color);
+      bottom: -5px;
+      left: 0;
+      transition: var(--transition);
+    }
+    
+    nav a:hover {
+      color: var(--accent-color);
+    }
+    
+    nav a:hover:after {
+      width: 100%;
+    }
+    
+    /* Container principal */
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+    }
+    
+    h2 {
+      color:rgb(252, 99, 3);
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.2rem;
+      position: relative;
+      padding-bottom: 15px;
+    }
+    
+    h2:after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 3px;
+      background: var(--accent-color);
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    /* Seção Sobre */
+    .sobre-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 30px;
+    }
+    
+    .sobre-texto {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .sobre-imagem {
+      flex: 1;
+      min-width: 300px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    
+    .sobre-imagem img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: var(--transition);
+    }
+    
+    .sobre-imagem:hover img {
+      transform: scale(1.05);
+    }
+    
+    /* Seção Países */
+    .paises {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+    
+    .pais {
+      background: #f9f9f9;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    
+    .pais:hover {
+      transform: translateY(-5px);
+    }
+    
+    .pais img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    
+    .pais-content {
+      padding: 20px;
+    }
+    
+    .pais h3 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+    
+    /* Seção Pratos */
+    .pratos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+    
+    .prato {
+      border: 1px solid #eee;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #fafafa;
+      transition: var(--transition);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    }
+    
+    .prato:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+    
+    .prato-imagem {
+      position: relative;
+      overflow: hidden;
+      height: 200px;
+    }
+    
+    .prato-imagem img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    
+    .prato:hover .prato-imagem img {
+      transform: scale(1.1);
+    }
+    
+    .prato-pais {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--primary-color);
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+    
+    .prato-info {
+      padding: 20px;
+    }
+    
+    .prato-info h3 {
+      color: var(--dark-color);
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+    
+    .prato-descricao {
+      color: #666;
+      margin-bottom: 15px;
+      font-size: 0.95rem;
+    }
+    
+    .prato-link {
+      display: inline-block;
+      color: var(--primary-color);
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    
+    .prato-link i {
+      margin-left: 5px;
+      transition: var(--transition);
+    }
+    
+    .prato-link:hover i {
+      transform: translateX(5px);
+    }
+    
+    /* Galeria */
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 30px;
+    }
+    
+    .galeria-item {
+      border-radius: 8px;
+      overflow: hidden;
+      height: 200px;
+      position: relative;
+      cursor: pointer;
+    }
+    
+    .galeria-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    
+    .galeria-item:hover img {
+      transform: scale(1.1);
+    }
+    
+    .galeria-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: var(--transition);
+    }
+    
+    .galeria-item:hover .galeria-overlay {
+      opacity: 1;
+    }
+    
+    .galeria-overlay i {
+      color: rgb(246, 74, 6);
+      font-size: 2rem;
+    }
+    
+    /* Contato */
+    .contato-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .contato-info {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .contato-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .contato-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+    }
+    
+    .contato-text h4 {
+      color: var(--primary-color);
+      margin-bottom: 5px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: var(--dark-color);
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+    
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--dark-color);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 50px;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      text-align: left;
+    }
+    
+    .footer-logo h3 {
+      color: var(--accent-color);
+      margin-bottom: 15px;
+      font-size: 1.8rem;
+    }
+    
+    .footer-links h4,
+    .footer-newsletter h4 {
+      color: white;
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-links h4:after,
+    .footer-newsletter h4:after {
+      content: '';
+      position: absolute;
+      width: 40px;
+      height: 2px;
+      background: var(--accent-color);
+      bottom: 0;
+      left: 0;
+    }
+    
+    .footer-links ul {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .footer-links a:hover {
+      color: var(--accent-color);
+      padding-left: 5px;
+    }
+    
+    .footer-newsletter p {
+      margin-bottom: 20px;
+      color: #ccc;
+    }
+    
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .newsletter-form input {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 4px;
+    }
+    
+    .newsletter-form button {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 0 20px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .newsletter-form button:hover {
+      background: var(--secondary-color);
+    }
+    
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 30px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid #555;
+      text-align: center;
+    }
+    
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .social-icons a {
+      color: white;
+      background: #555;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    
+    .social-icons a:hover {
+      background: var(--primary-color);
+      transform: translateY(-3px);
+    }
+    
+    /* Responsividade */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+      
+      header p {
+        font-size: 1.2rem;
+      }
+      
+      nav a {
+        margin: 0 10px;
+        font-size: 1rem;
+      }
+      
+      .container {
+        padding: 20px;
+        margin: 20px;
+      }
+      
+      .sobre-content {
+        flex-direction: column;
+      }
+      
+      .newsletter-form {
+        flex-direction: column;
+      }
+    }
+    
+    /* Animações */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .fade-in {
+      animation: fadeIn 1s ease forwards;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Sabores da Lusofonia</h1>
+      <p>Uma jornada gastronômica pelos países de língua portuguesa</p>
+      <a href="#pratos" class="btn">Descobrir Sabores</a>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#sobre">Sobre</a>
+    <a href="#paises">Países</a>
+    <a href="#pratos">Pratos</a>
+    <a href="#galeria">Galeria</a>
+    <a href="#contato">Contato</a>
+  </nav>
+
+  <div class="container" id="sobre">
+    <h2>Sobre Nós</h2>
+    <div class="sobre-content">
+      <div class="sobre-texto">
+        <p>O <strong>Sabores da Lusofonia</strong> celebra a riqueza e diversidade gastronômica dos países de língua portuguesa. Da Europa às Américas, passando por África e Ásia, nossa missão é conectar culturas através do prazer da boa comida.</p>
+        <p>Nossa plataforma nasceu da paixão pela culinária e pela língua portuguesa, com o objetivo de preservar e divulgar receitas tradicionais, técnicas culinárias e histórias que fazem parte do patrimônio cultural dos povos lusófonos.</p>
+        <p>Aqui você encontrará desde pratos consagrados como o bacalhau português e a feijoada brasileira, até iguarias menos conhecidas como a cachupa cabo-verdiana e o funge angolano. Cada receita conta uma história, cada sabor revela uma tradição.</p>
+      </div>
+      <div class="sobre-imagem">
+        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Culinária Lusófona">
+      </div>
+    </div>
+  </div>
+
+  <div class="container" id="paises">
+    <h2>Países Lusófonos</h2>
+    <div class="paises">
+      <div class="pais">
+        <img src="image/Portugal.jpg" alt="Portugal">
+        <div class="pais-content">
+          <h3>Portugal</h3>
+          <p>Berço da língua portuguesa, sua culinária é marcada por pratos à base de bacalhau, azeite, e uma variedade de carnes e enchidos.</p>
+        </div>
+      </div>
+      <div class="pais">
+        <img src="image/flag-brazil.jpg" alt="Brasil">
+        <div class="pais-content">
+          <h3>Brasil</h3>
+          <p>Com dimensões continentais, oferece uma gastronomia diversificada que varia de região para região, com pratos como feijoada, moqueca e acarajé.</p>
+        </div>
+      </div>
+      <div class="pais">
+        <img src="image/flag-angola.jpg" alt="Angola">
+        <div class="pais-content">
+          <h3>Angola</h3>
+          <p>Suas raízes africanas se misturam com influências portuguesas, resultando em pratos como funge, moamba de galinha e calulu.</p>
+        </div>
+      </div>
+      <div class="pais">
+        <img src="image/M.jpg" alt="Moçambique">
+        <div class="pais-content">
+          <h3>Moçambique</h3>
+          <p>Culinária rica em frutos do mar e especiarias, com destaque para o piri-piri, camarões grelhados e matapa.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" id="pratos">
+    <h2>Pratos em Destaque</h2>
+    <div class="pratos">
+      <div class="prato">
+        <div class="prato-imagem">
+          <img src="image/FeijoadaBrazileira.jpg" alt="Feijoada Brasileira">
+          <div class="prato-pais">Brasil</div>
+        </div>
+        <div class="prato-info">
+          <h3>Feijoada Brasileira</h3>
+          <p class="prato-descricao">Considerada o prato nacional do Brasil, é um cozido de feijão preto com diversas carnes, servido com arroz, couve, laranja e farofa.</p>
+          <a href="#" class="prato-link">Ver receita <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="prato">
+        <div class="prato-imagem">
+          <img src="image/Bacalhau.jpg" alt="Bacalhau à Portuguesa">
+          <div class="prato-pais">Portugal</div>
+        </div>
+        <div class="prato-info">
+          <h3>Bacalhau à Brás</h3>
+          <p class="prato-descricao">Um dos mais famosos pratos portugueses, feito com bacalhau desfiado, batata palha, cebola, ovos e azeitonas.</p>
+          <a href="#" class="prato-link">Ver receita <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="prato">
+        <div class="prato-imagem">
+          <img src="image/Cachupa cabo.jpg" alt="Cachupa Cabo-Verdiana">
+          <div class="prato-pais">Cabo Verde</div>
+        </div>
+        <div class="prato-info">
+          <h3>Cachupa</h3>
+          <p class="prato-descricao">Prato nacional de Cabo Verde, é um guisado de milho, feijão, mandioca, batata e carnes ou peixe, cozido lentamente.</p>
+          <a href="#" class="prato-link">Ver receita <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="prato">
+        <div class="prato-imagem">
+          <img src="image/Calulu.jpg" alt=" Calulu (Angola)">
+          <div class="prato-pais">Angola</div>
+        </div>
+        <div class="prato-info">
+          <h3> Calulu</h3>
+          <p class="prato-descricao">Prato tradicional angolano que combina funge (pasta de farinha de mandioca) com calulu (guisado de peixe ou carne com quiabo e berinjela).</p>
+          <a href="#" class="prato-link">Ver receita <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="prato">
+        <div class="prato-imagem">
+          <img src="image/Pastel de nata.jpg" alt="Pastéis de Belém">
+          <div class="prato-pais">Portugal</div>
+        </div>
+        <div class="prato-info">
+          <h3>Pastéis de Nata</h3>
+          <p class="prato-descricao">Doces tradicionais portugueses de massa folhada com recheio cremoso de creme de ovos, polvilhados com canela.</p>
+          <a href="#" class="prato-link">Ver receita <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="prato">
+        <div class="prato-imagem">
+          <img src="image/Moqueca.jpg" alt="Moqueca">
+          <div class="prato-pais">Brasil</div>
+        </div>
+        <div class="prato-info">
+          <h3>Moqueca</h3>
+          <p class="prato-descricao">Prato típico do litoral brasileiro, feito com peixe ou camarão, cozido em panela de barro com azeite de dendê, leite de coco e temperos.</p>
+          <a href="#" class="prato-link">Ver receita <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" id="galeria">
+    <h2>Galeria de Sabores</h2>
+    <div class="galeria">
+      <div class="galeria-item">
+        <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Prato 1">
+        <div class="galeria-overlay">
+          <i class="fas fa-search-plus"></i>
+        </div>
+      </div>
+      <div class="galeria-item">
+        <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Prato 2">
+        <div class="galeria-overlay">
+          <i class="fas fa-search-plus"></i>
+        </div>
+      </div>
+      <div class="galeria-item">
+        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Prato 3">
+        <div class="galeria-overlay">
+          <i class="fas fa-search-plus"></i>
+        </div>
+      </div>
+      <div class="galeria-item">
+        <img src="https://images.unsplash.com/photo-1598214886806-c87b84b7078b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Prato 4">
+        <div class="galeria-overlay">
+          <i class="fas fa-search-plus"></i>
+        </div>
+      </div>
+       <div class="galeria-item">
+        <img src="image/DoceB.jpg" alt="Prato 4">
+        <div class="galeria-overlay">
+          <i class="fas fa-search-plus"></i>
+        </div>
+      </div>
+      <div class="galeria-item">
+        <img src="image/galeria2.jpg" alt="Prato 4">
+        <div class="galeria-overlay">
+          <i class="fas fa-search-plus"></i>
+        </div>
+      </div>
+      <div class="galeria-item">
+        <img src="image/prato-de-salada-de-taco-de-carne-gourmet-fresco-gerado-por-ia.jpg" alt="Prato 4">
+        <div class="galeria-overlay">
+          <i class="fas fa-search-plus"></i>
+        </div>
+      </div>
+      <div class="galeria-item">
+        <img src="image/Peixe.jpg" alt="Prato 4">
+        <div class="galeria-overlay">
+          <i class="fas fa-search-plus"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" id="contato">
+    <h2>Entre em Contato</h2>
+    <div class="contato-content">
+      <div class="contato-info">
+        <div class="contato-item">
+          <div class="contato-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="contato-text">
+            <h4>Endereço</h4>
+            <p>Av. da Lusofonia, 123<br>Lisboa, Portugal</p>
+          </div>
+        </div>
+        <div class="contato-item">
+          <div class="contato-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div class="contato-text">
+            <h4>Telefone</h4>
+            <p>+351 123 456 789</p>
+          </div>
+        </div>
+        <div class="contato-item">
+          <div class="contato-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="contato-text">
+            <h4>Email</h4>
+            <p>contato@saboresdalusofonia.com</p>
+          </div>
+        </div>
+        <div class="contato-item">
+          <div class="contato-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="contato-text">
+            <h4>Horário de Funcionamento</h4>
+            <p>Segunda a Sexta: 9h às 18h<br>Sábado: 10h às 16h</p>
+          </div>
+        </div>
+      </div>
+      <div class="contato-form">
+        <form>
+          <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="form-group">
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" required></textarea>
+          </div>
+          <button type="submit" class="btn">Enviar Mensagem</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <h3>Sabores da Lusofonia</h3>
+        <p>Conectando culturas através da gastronomia lusófona.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Links Rápidos</h4>
+        <ul>
+          <li><a href="#sobre">Sobre Nós</a></li>
+          <li><a href="#paises">Países</a></li>
+          <li><a href="#pratos">Pratos Típicos</a></li>
+          <li><a href="#galeria">Galeria</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer-newsletter">
+        <h4>Newsletter</h4>
+        <p>Inscreva-se para receber receitas e novidades.</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Seu email" required>
+          <button type="submit"><i class="fas fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-pinterest"></i></a>
+      </div>
+      <p>&copy; 2025 Sabores da Lusofonia - Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Efeito de rolagem suave
+    document.querySelectorAll('nav a, .btn').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        window.scrollTo({
+          top: targetElement.offsetTop - 70,
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Animação de elementos ao rolar
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.prato, .pais, .galeria-item').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
